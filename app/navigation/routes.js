@@ -1,9 +1,9 @@
 export default Object.freeze({
-  ACCOUNT: "Account",
-  FEED: "Feed",
-  LISTING: "Listing",
-  LISTING_DETAILS: "ListingDetails",
-  LISTINGS_EDIT: "ListingsEdit",
+  ACCOUNT: "חשבון",
+  FEED: "רשימות",
+  LISTING: "רשימה",
+  LISTING_DETAILS: "פרטי רשימה",
+  LISTINGS_EDIT: "הוספת רשימה",
   LOGIN: "Login",
   WELCOME: "welcome",
 });
