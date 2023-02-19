@@ -12,7 +12,7 @@ import {
   FormImagePicker,
 } from "../components";
 import useLocation from "../hooks/useLocation";
-import useCollection from "../hooks/useCollection";
+// import useCollection from "../hooks/useCollection";
 // import listingsFirebase from '../firebase/listings';
 import { UploadScreen } from "./UploadScreen";
 // import useAuth from '../auth/useAuth';
@@ -82,7 +82,7 @@ export const ListingEditScreen = () => {
           width={120}
         />
         <AppFormPicker
-          items={categories}
+          items={[]}
           name="category"
           numberOfColumns={3}
           PickerItemComponent={CategoryPickerItem}

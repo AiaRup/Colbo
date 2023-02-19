@@ -13,16 +13,14 @@ import routes from "../navigation/routes";
 
 export const ListingsScreen = ({ navigation }) => {
   useEffect(() => {
-    const unsubscribe = navigation.addListener("focus", () => {
-      loadListings();
-    });
+    const unsubscribe = navigation.addListener("focus", () => {});
 
     return unsubscribe;
   }, [navigation]);
 
   return (
     <>
-      <ActivityIndicator visible={loading} />
+      <ActivityIndicator visible={true} />
       <Screen style={styles.screen}>
         {/* {error && (
           <>

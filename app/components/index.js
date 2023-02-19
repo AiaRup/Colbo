@@ -12,6 +12,8 @@ export { Card } from "./Card";
 export { ErrorMessage } from "./forms/ErrorMessage";
 export { FormImagePicker } from "./forms/FormImagePicker";
 export { Icon } from "./Icon";
+export { ImageInput } from "./ImageInput";
+export { ImageInputList } from "./ImageInputList";
 export { ListItem } from "./lists/ListItem";
 export { ListItemDeleteAction } from "./lists/ListItemDeleteAction";
 export { ListItemSeperator } from "./lists/ListItemSeperator";

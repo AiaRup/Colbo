@@ -10,26 +10,9 @@ import { Image } from "react-native-expo-image-cache";
 
 import { ListItem, AppText } from "../components";
 import colors from "../config/colors";
-import usersApi from "../firebase/users";
-import useFirestore from "../hooks/useFirestore";
 
 export const ListingDetailsScreen = ({ route }) => {
   const listing = route.params;
-  const { request, data } = useFirestore(usersApi.getUserById);
-  const [createdBy, setCreatedBy] = useState(null);
-
-  const updateListingOwner = async (id) => {
-    await request(id);
-    if (data) {
-      setCreatedBy(data);
-    }
-  };
-
-  useEffect(() => {
-    if (listing.createdBy) {
-      updateListingOwner(listing.createdBy);
-    }
-  }, [listing?.createdBy]);
 
   return (
     <ScrollView style={styles.container}>
@@ -40,24 +23,10 @@ export const ListingDetailsScreen = ({ route }) => {
       >
         <Image
           style={styles.image}
-          preview={{ uri: listing.images[0].thumbnailUrl }}
+          preview={{ uri: "" }}
           tint="light"
-          uri={listing.images[0].url}
+          uri={""}
         />
-        {createdBy && (
-          <View style={styles.detailsContainer}>
-            <AppText style={styles.title}>{listing.title}</AppText>
-            <AppText style={styles.price}>${listing.price}</AppText>
-            <View style={styles.userContainer}>
-              <ListItem
-                image={createdBy.photo}
-                avatar={createdBy.name}
-                title={createdBy.name}
-                subTitle="5 Listings"
-              />
-            </View>
-          </View>
-        )}
       </KeyboardAvoidingView>
     </ScrollView>
   );
