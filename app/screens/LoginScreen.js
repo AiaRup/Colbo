@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Image } from "react-native";
 import * as Yup from "yup";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 import {
   ErrorMessage,
@@ -25,13 +26,15 @@ const validationSchema = Yup.object().shape({
 
 export const LoginScreen = () => {
   const [loginFailed, setLoginFailded] = useState(false);
-  // const { logIn } = firebaseAuth();
+  const auth = getAuth();
 
   const handleSubmit = async ({ email, password }) => {
-    // setLoginFailded(false);
-    // const result = await logIn({ email, password });
-    // if (!result.ok) return setLoginFailded(result.error);
-    // setLoginFailded(false);
+    setLoginFailded(false);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      setLoginFailded(true);
+    }
   };
 
   return (
@@ -43,7 +46,7 @@ export const LoginScreen = () => {
         validationSchema={validationSchema}
       >
         <ErrorMessage
-          error={loginFailed || "Invalid email and/or password"}
+          error={"הנתונים שהוזנו אינם נכונים"}
           visible={loginFailed}
         />
         <AppFormField
@@ -52,7 +55,7 @@ export const LoginScreen = () => {
           icon="email"
           keyboardType="email-address"
           name="email"
-          placeholder="Email"
+          placeholder="אימייל"
           textContentType="emailAddress"
         />
         <AppFormField
@@ -60,11 +63,11 @@ export const LoginScreen = () => {
           autoCorrect={false}
           icon="lock"
           name="password"
-          placeholder="Password"
+          placeholder="סיסמא"
           secureTextEntry
           textContentType="password"
         />
-        <SubmitButton title="Login" />
+        <SubmitButton title="כניסה" />
       </AppForm>
     </Screen>
   );

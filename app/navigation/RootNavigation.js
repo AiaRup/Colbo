@@ -1,10 +1,18 @@
-import React from 'react';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
 
-export const navigationRef = React.createRef();
+import { useAuthentication } from "../hooks/useAuthentication";
+import navigationTheme from "./navigationTheme";
+import AppNavigator from "./AppNavigator";
+import AuthNavigator from "./AuthNavigator";
+import { navigationRef } from "./RootNavigationRef";
 
-const navigate = (name, params) =>
-  navigationRef.current?.navigate(name, params);
+export default function RootNavigation() {
+  const { user } = useAuthentication();
 
-export default {
-  navigate,
-};
+  return (
+    <NavigationContainer ref={navigationRef} theme={navigationTheme}>
+      {user ? <AppNavigator /> : <AuthNavigator />}
+    </NavigationContainer>
+  );
+}

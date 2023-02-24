@@ -11,7 +11,7 @@ import {
 import colors from "../config/colors";
 import routes from "../navigation/routes";
 
-export const ListingsScreen = ({ navigation }) => {
+export const ListsScreen = ({ navigation }) => {
   useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {});
 

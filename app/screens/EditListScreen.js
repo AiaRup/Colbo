@@ -25,7 +25,7 @@ const validationSchema = Yup.object().shape({
   images: Yup.array().min(1, "Please select at least one image."),
 });
 
-export const ListingEditScreen = () => {
+export const EditListScreen = () => {
   const location = useLocation();
   // const { user } = useAuth();
   const [uploadVisible, setUploadVisible] = useState(false);

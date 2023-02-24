@@ -11,7 +11,7 @@ import { Image } from "react-native-expo-image-cache";
 import { ListItem, AppText } from "../components";
 import colors from "../config/colors";
 
-export const ListingDetailsScreen = ({ route }) => {
+export const ListDetailsScreen = ({ route }) => {
   const listing = route.params;
 
   return (
