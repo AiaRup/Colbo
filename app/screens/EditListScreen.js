@@ -11,6 +11,7 @@ import {
   Screen,
   FormImagePicker,
 } from "../components";
+import { useCategories } from "../hooks/useCategories";
 import useLocation from "../hooks/useLocation";
 // import useCollection from "../hooks/useCollection";
 // import listingsFirebase from '../firebase/listings';
@@ -30,8 +31,10 @@ export const EditListScreen = () => {
   // const { user } = useAuth();
   const [uploadVisible, setUploadVisible] = useState(false);
   const [progress, setProgress] = useState(0);
+  const { categories } = useCategories();
 
-  // const { data: categories } = useCollection('categories');
+  console.log("categories", categories);
+
   // const { error, request } = useFirestore(listingsFirebase.addListing);
 
   const handleSubmit = async (listing, { resetForm }) => {

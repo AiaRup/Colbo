@@ -1,11 +1,11 @@
-import React from 'react';
-import { StyleSheet, View, Image, TouchableHighlight } from 'react-native';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import React from "react";
+import { StyleSheet, View, Image, TouchableHighlight } from "react-native";
+import Swipeable from "react-native-gesture-handler/Swipeable";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { AppText } from '../AppText';
-import colors from '../../config/colors';
-import { AvatarText } from '../AvatarText';
+import { AppText } from "../AppText";
+import colors from "../../config/colors";
+import { AvatarText } from "../AvatarText";
 
 export const ListItem = ({
   avatar,
@@ -21,9 +21,6 @@ export const ListItem = ({
     <Swipeable renderRightActions={renderRightActions}>
       <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
         <View style={styles.container}>
-          {IconComponent}
-          {image && <Image style={styles.image} source={image} />}
-          {avatar && <AvatarText text={avatar} />}
           <View style={styles.detailsContainer}>
             <AppText style={styles.title} numberOfLines={1}>
               {title}
@@ -34,9 +31,13 @@ export const ListItem = ({
               </AppText>
             )}
           </View>
+          {IconComponent}
+          {image && <Image style={styles.image} source={image} />}
+          {avatar && <AvatarText text={avatar} />}
+
           {showChevrons && (
             <MaterialCommunityIcons
-              name="chevron-right"
+              name="chevron-left"
               size={25}
               color={colors.medium}
             />
@@ -49,15 +50,18 @@ export const ListItem = ({
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    flexDirection: "row",
     padding: 15,
     backgroundColor: colors.white,
-    alignItems: 'center',
+    alignItems: "center",
+    borderWidth: "0.6px",
+    borderColor: colors.border,
+    borderRadius: "8px",
+    justifyContent: "space-between",
   },
   detailsContainer: {
     marginLeft: 10,
-    justifyContent: 'center',
-    flex: 1,
+    alignItems: "flex-start",
   },
   image: {
     height: 70,
@@ -68,6 +72,6 @@ const styles = StyleSheet.create({
     color: colors.medium,
   },
   title: {
-    fontWeight: '500',
+    fontWeight: "500",
   },
 });

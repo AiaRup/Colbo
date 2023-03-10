@@ -3,13 +3,15 @@ import { StyleSheet, FlatList } from "react-native";
 
 import {
   ActivityIndicator,
-  AppButton,
-  AppText,
-  Card,
   Screen,
+  ListItem,
+  ListItemDeleteAction,
+  ListItemRenameAction,
 } from "../components";
 import colors from "../config/colors";
+import { useLists } from "../hooks/useLists";
 import routes from "../navigation/routes";
+import { transformDateToString } from "../utility/dates";
 
 export const ListsScreen = ({ navigation }) => {
   useEffect(() => {
@@ -18,9 +20,17 @@ export const ListsScreen = ({ navigation }) => {
     return unsubscribe;
   }, [navigation]);
 
+  const { lists } = useLists();
+  const handleDelete = (message) => {
+    // TODO: delete from DB
+  };
+  const handleRename = (message) => {
+    // TODO: rename list
+  };
+
   return (
     <>
-      <ActivityIndicator visible={true} />
+      <ActivityIndicator visible={false} />
       <Screen style={styles.screen}>
         {/* {error && (
           <>
@@ -29,15 +39,20 @@ export const ListsScreen = ({ navigation }) => {
           </>
         )} */}
         <FlatList
-          data={[]}
+          data={lists}
           keyExtractor={(listing) => listing.id.toString()}
           renderItem={({ item }) => (
-            <Card
-              title={item.title}
-              subTitle={`$${item.price}`}
-              imageUrl={item.images[0].url}
-              onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
-              thumbnailUrl={item.images[0].thumbnailUrl}
+            <ListItem
+              title={transformDateToString(item.date)}
+              subTitle={item.location}
+              onPress={() => navigation.navigate(routes.LIST_DETAILS, item)}
+              showChevrons
+              renderRightActions={() => (
+                <>
+                  <ListItemRenameAction onPress={() => handleRename(item)} />
+                  <ListItemDeleteAction onPress={() => handleDelete(item)} />
+                </>
+              )}
             />
           )}
         />

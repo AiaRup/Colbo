@@ -16,6 +16,7 @@ export { ImageInput } from "./ImageInput";
 export { ImageInputList } from "./ImageInputList";
 export { ListItem } from "./lists/ListItem";
 export { ListItemDeleteAction } from "./lists/ListItemDeleteAction";
+export { ListItemRenameAction } from "./lists/ListItemRenameAction";
 export { ListItemSeperator } from "./lists/ListItemSeperator";
 export { OfflineNotice } from "./OfflineNotice";
 export { PickerItem } from "./PickerItem";

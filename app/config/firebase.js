@@ -1,5 +1,6 @@
 import Constants from "expo-constants";
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   databaseURL: Constants.manifest?.extra?.databaseURL,
@@ -12,5 +13,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-export default app;
+export { app, db };

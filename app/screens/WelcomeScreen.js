@@ -7,13 +7,12 @@ import routes from "../navigation/routes";
 export const WelcomeScreen = ({ navigation }) => {
   return (
     <ImageBackground
-      blurRadius={10}
+      blurRadius={2}
       style={styles.background}
       source={require("../assets/background.jpg")}
     >
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require("../assets/logo-red.png")} />
-        <Text style={styles.tagline}>The Clever Shopping List App</Text>
       </View>
       <View style={styles.buttonsContainer}>
         <AppButton
@@ -33,6 +32,7 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     padding: 20,
+    paddingBottom: 50,
     width: "100%",
   },
   logo: {
@@ -41,11 +41,11 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     position: "absolute",
-    top: 200,
+    top: 100,
     alignItems: "center",
   },
   tagline: {
-    fontSize: 25,
+    fontSize: 40,
     fontWeight: "600",
     paddingVertical: 20,
   },

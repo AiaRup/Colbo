@@ -12,7 +12,8 @@ export default function RootNavigation() {
 
   return (
     <NavigationContainer ref={navigationRef} theme={navigationTheme}>
-      {user ? <AppNavigator /> : <AuthNavigator />}
+      {/* {user ? <AppNavigator /> : <AuthNavigator />} */}
+      {user ? <AuthNavigator /> : <AppNavigator />}
     </NavigationContainer>
   );
 }

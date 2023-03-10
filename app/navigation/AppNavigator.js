@@ -20,7 +20,6 @@ export default AppNavigator = () => {
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
-          headerShown: false,
         }}
       />
       <Tab.Screen

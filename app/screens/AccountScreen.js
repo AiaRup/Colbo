@@ -24,7 +24,11 @@ export const AccountScreen = ({ navigation }) => {
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
-        <ListItem title={"aia"} subTitle={user?.email} avatar={"aia"} />
+        <ListItem
+          title={"איה רופסום"}
+          subTitle={user?.email}
+          avatar={"איה רופסום"}
+        />
       </View>
       <View style={styles.container}>
         <FlatList
@@ -40,13 +44,13 @@ export const AccountScreen = ({ navigation }) => {
                   backgroundColor={item.icon.backgroundColor}
                 />
               }
-              onPress={() => navigation.navigate(item.targetScreen)}
+              onPress={() => navigation.navigate(routes.LISTS, "איה רופסום")}
             />
           )}
         ></FlatList>
       </View>
       <ListItem
-        title="Log Out"
+        title="יציאה"
         IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
         onPress={() => signOut(auth)}
       />
@@ -60,5 +64,6 @@ const styles = StyleSheet.create({
   },
   screen: {
     backgroundColor: colors.light,
+    padding: 20,
   },
 });
