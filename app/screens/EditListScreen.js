@@ -2,104 +2,40 @@ import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 
-import {
-  AppForm,
-  AppFormField,
-  AppFormPicker,
-  CategoryPickerItem,
-  SubmitButton,
-  Screen,
-  FormImagePicker,
-} from "../components";
+import { AppForm, AppFormField, Screen } from "../components";
 import { useCategories } from "../hooks/useCategories";
-import useLocation from "../hooks/useLocation";
-// import useCollection from "../hooks/useCollection";
-// import listingsFirebase from '../firebase/listings';
-import { UploadScreen } from "./UploadScreen";
-// import useAuth from '../auth/useAuth';
+import { useAuthentication } from "../hooks/useAuthentication";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
-  price: Yup.number().required().min(1).max(10000).label("Price"),
-  description: Yup.string().label("Description"),
-  category: Yup.object().required().nullable().label("Category"),
-  images: Yup.array().min(1, "Please select at least one image."),
 });
 
 export const EditListScreen = () => {
-  const location = useLocation();
-  // const { user } = useAuth();
-  const [uploadVisible, setUploadVisible] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const { user } = useAuthentication();
   const { categories } = useCategories();
+  const [items, setItems] = useState([]);
 
   console.log("categories", categories);
 
-  // const { error, request } = useFirestore(listingsFirebase.addListing);
-
-  const handleSubmit = async (listing, { resetForm }) => {
-    setProgress(0);
-    setUploadVisible(true);
-    3;
-
-    request({
-      ...listing,
-      location,
-      createdBy: user.uid,
-    });
-
-    if (error) {
-      setUploadVisible(false);
-      return alert("Could not save the listing.");
-    }
-    setProgress(100);
-
-    resetForm();
+  const handleSearch = async (listing, { resetForm }) => {
+    // TODO: serach DB for item
   };
 
   return (
     <Screen style={styles.container}>
-      <UploadScreen
-        onDone={() => setUploadVisible(false)}
-        progress={progress}
-        visible={uploadVisible}
-      />
       <AppForm
         initialValues={{
-          title: "",
-          price: "",
-          description: "",
-          category: null,
-          images: [],
+          item_name: "",
         }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
-        <FormImagePicker name="images" />
-        <AppFormField maxLength={255} name="title" placeholder="Title" />
-        <AppFormField
-          keyboardType="numeric"
-          maxLength={8}
-          name="price"
-          placeholder="Price"
-          width={120}
-        />
-        <AppFormPicker
-          items={[]}
-          name="category"
-          numberOfColumns={3}
-          PickerItemComponent={CategoryPickerItem}
-          placeholder="Category"
-          width="50%"
-        />
         <AppFormField
           maxLength={255}
-          multiline
-          name="description"
-          numberOfLines={3}
-          placeholder="Description"
+          name="item_name"
+          placeholder="חיפוש מוצר"
+          icon="magnify"
         />
-        <SubmitButton title="Post" />
       </AppForm>
     </Screen>
   );

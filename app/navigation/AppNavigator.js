@@ -18,8 +18,15 @@ export default AppNavigator = () => {
         component={FeedNavigator}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            <MaterialCommunityIcons
+              name="format-list-numbered-rtl"
+              color={color}
+              size={size}
+            />
           ),
+          tabBarLabelStyle: {
+            fontSize: 14,
+          },
         }}
       />
       <Tab.Screen
@@ -41,6 +48,9 @@ export default AppNavigator = () => {
             <MaterialCommunityIcons name="account" color={color} size={size} />
           ),
           headerShown: false,
+          tabBarLabelStyle: {
+            fontSize: 14,
+          },
         }}
       />
     </Tab.Navigator>

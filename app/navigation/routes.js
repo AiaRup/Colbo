@@ -5,5 +5,5 @@ export default Object.freeze({
   LIST_DETAILS: "פרטי רשימה",
   EDIT_LIST: "רשימה חדשה",
   LOGIN: "כניסה",
-  WELCOME: "welcome",
+  WELCOME: "ברוכים הבאים",
 });

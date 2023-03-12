@@ -7,6 +7,7 @@ import {
   ListItem,
   ListItemDeleteAction,
   ListItemRenameAction,
+  ListItemSeperator,
 } from "../components";
 import colors from "../config/colors";
 import { useLists } from "../hooks/useLists";
@@ -41,6 +42,7 @@ export const ListsScreen = ({ navigation }) => {
         <FlatList
           data={lists}
           keyExtractor={(listing) => listing.id.toString()}
+          ItemSeparatorComponent={ListItemSeperator}
           renderItem={({ item }) => (
             <ListItem
               title={transformDateToString(item.date)}
