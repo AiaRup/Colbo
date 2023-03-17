@@ -24,6 +24,7 @@ export default AppNavigator = () => {
               size={size}
             />
           ),
+          headerShown: false,
           tabBarLabelStyle: {
             fontSize: 14,
           },

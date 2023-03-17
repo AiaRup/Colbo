@@ -15,10 +15,8 @@ export const EditListScreen = () => {
   const { categories } = useCategories();
   const [items, setItems] = useState([]);
 
-  console.log("categories", categories);
-
   const handleSearch = async (listing, { resetForm }) => {
-    // TODO: serach DB for item
+    // TODO: search DB for item
   };
 
   return (
@@ -27,7 +25,7 @@ export const EditListScreen = () => {
         initialValues={{
           item_name: "",
         }}
-        onSubmit={handleSubmit}
+        onSubmit={() => console.log("submit")}
         validationSchema={validationSchema}
       >
         <AppFormField
