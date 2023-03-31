@@ -38,26 +38,24 @@ export const ListDetailsScreen = ({ route, navigation }) => {
           width={300}
           style={styles.progress}
         />
-        {items && items.length ? (
-          <FlatList
-            data={items}
-            keyExtractor={(item) => item.id.toString()}
-            ItemSeparatorComponent={() => <View style={styles.seperator} />}
-            renderItem={({ item }) => (
-              <View style={styles.item}>
-                <Text style={styles.item}>{item.product_id}</Text>
-                <Checkbox
-                  color={item.completed ? colors.primary : undefined}
-                  value={item.completed}
-                  onValueChange={(newValue) => console.log(newValue)}
-                  style={styles.checkbox}
-                />
-              </View>
-            )}
-          />
-        ) : (
-          <Text style={styles.empty}>הרשימה ריקה</Text>
-        )}
+
+        <FlatList
+          data={items}
+          keyExtractor={(item) => item.id.toString()}
+          ItemSeparatorComponent={() => <View style={styles.seperator} />}
+          renderItem={({ item }) => (
+            <View style={styles.item}>
+              <Text style={styles.item}>{item.product_id}</Text>
+              <Checkbox
+                color={item.completed ? colors.primary : undefined}
+                value={item.completed}
+                onValueChange={(newValue) => console.log(newValue)}
+                style={styles.checkbox}
+              />
+            </View>
+          )}
+          ListEmptyComponent={<Text style={styles.empty}>הרשימה ריקה</Text>}
+        />
       </KeyboardAvoidingView>
     </View>
   );

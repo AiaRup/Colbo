@@ -4,7 +4,7 @@ import { collection, query, onSnapshot } from "firebase/firestore";
 import { db } from "../config/firebase";
 
 export function useCategories() {
-  const [categories, setCategories] = useState();
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const q = query(collection(db, "categories"));
