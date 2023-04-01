@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, FlatList } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
+  Image,
+  TouchableHighlight,
+} from "react-native";
 import * as Yup from "yup";
 
 import { AppForm, AppFormField, Screen } from "../components";
@@ -19,6 +26,8 @@ export const EditListScreen = () => {
   const handleSearch = async (listing, { resetForm }) => {
     // TODO: search DB for item
   };
+
+  const handleCategoryPress = async (categoryId) => {};
 
   return (
     <Screen style={styles.container}>
@@ -41,18 +50,31 @@ export const EditListScreen = () => {
         data={categories}
         style={styles.categoriesContainer}
         keyExtractor={(category) => category.id}
-        numColumns={2}
+        numColumns={3}
         contentContainerStyle={{
           flexGrow: 1,
           alignItems: "center",
         }}
-        renderItem={({ item }) => {
-          return (
+        renderItem={({ item }) => (
+          <TouchableHighlight
+            underlayColor={colors.light}
+            onPress={() => handleCategoryPress(item.id)}
+            style={styles.categoryContainer}
+          >
             <View style={styles.category}>
+              <Image
+                source={{ uri: item.image }}
+                style={{
+                  width: 70,
+                  height: 70,
+                  color: colors.white,
+                  resizeMode: "contain",
+                }}
+              />
               <Text style={styles.text}>{item.name}</Text>
             </View>
-          );
-        }}
+          </TouchableHighlight>
+        )}
       />
     </Screen>
   );
@@ -65,9 +87,9 @@ const styles = StyleSheet.create({
   categoriesContainer: {
     marginTop: 30,
   },
-  category: {
-    flexBasis: 150,
-    height: 150,
+  categoryContainer: {
+    flexBasis: 120,
+    height: 120,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 10,
@@ -75,9 +97,17 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: colors.secondary,
   },
+  category: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
   text: {
     fontSize: 15,
     color: colors.white,
     fontWeight: "bold",
+  },
+  image: {
+    height: 80,
+    width: 80,
   },
 });
