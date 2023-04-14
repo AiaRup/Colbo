@@ -12,7 +12,6 @@ import Checkbox from "expo-checkbox";
 
 import colors from "../config/colors";
 import { useList } from "../hooks/useList";
-import { ListItemSeperator } from "../components";
 
 export const ListDetailsScreen = ({ route, navigation }) => {
   const list = route.params;
